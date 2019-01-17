@@ -4,43 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
+  <script>
+  var i = 2;
+
+  function left(){
+    i--;
+    if(i == 1)
+      // $("#img").attr("src", "images\\무지.png");
+      document.querySelector('#img').src = 'images\\무지.png'
+    else if(i == 2)
+      // $("#img").attr("src", "images\\라이언.png");
+      document.querySelector('#img').src = 'images\\라이언.png'
+    else if(i == 3)
+    // $("#img").attr("src", "images\\어피치.png");
+    document.querySelector('#img').src = 'images\\어피치.png'
+    else if(i < 1)
+        i = 1;
+  }
+  function right(){
+    i++;
+    if(i == 1)
+      // $("#img").attr("src", "images\\무지.png");
+      document.querySelector('#img').src = 'images\\무지.png'
+    else if(i == 2)
+      // $("#img").attr("src", "images\\라이언.png");
+      document.querySelector('#img').src = 'images\\라이언.png'
+    else if(i == 3)
+    // $("#img").attr("src", "images\\어피치.png");
+    document.querySelector('#img').src = 'images\\어피치.png'
+    else if(i > 3)
+        i = 3;
+  }
+  </script>
+
+
+
+  <title>탭해서 넘기기</title>
   <style>
-    @import url('@import url(//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css)');
-    .box:hover{
-      color:rgb(139, 133, 255);
-      transform: rotate(15deg);
-    }
-    body{
-      font-family: 'NanumSquare', sans-serif;
-      font-size: 20px;
-    }
+
   </style>
 </head>
 <body>
-  <div class="box1" style="text-align:center">
-    <p>
-      <h1 style="font-style:italic; color:rgb(152, 152, 152)">"오늘의 명언"</h1>
-      1. 큰 목표를 이루고 싶으면 허락을 구하지 마라. – 미상 <br><br>
-
-      2. 상황을 가장 잘 활용하는 사람이 가장 좋은 상황을 맞는다. – 존 우든 <br><br>
-
-      3. 창조적인 삶을 살려면 내가 틀릴지도 모른다는 공포를 버려야 한다. – 미상 <br><br>
-
-      4. 일반적인 것을 잃을 위험을 감수하지 않으면 평범한 것에 만족해야 한다. – 짐 론 <br><br>
-
-      5. 신뢰의 이유는 안전하거나 확실해서가 아니라, 위험을 감수할 용의가 있어서이다. – 미상 <br><br>
-
-      6. 애벌레가 세상이 끝났다고 생각하는 순간 나비로 변했다. - 속담 <br><br>
-
-      7. 추구할 수 있는 용기가 있다면 우리의 모든 꿈은 이뤄질 수 있다. – 월트 디즈니 <br><br>
-
-      8. 기다리는 사람에게 좋은 일이 생기지만, 찾아나서는 사람에게는 더 좋은 일이 생긴다. – 미상 <br><br>
-
-      9. 늘 하던 대로 하면 늘 얻던 것을 얻는다. – 미상 <br><br>
-
-      10. 열정을 잃지 않고 실패에서 실패로 걸어가는 것이 성공이다. – 윈스턴 처칠
-    </p>
-  </div>
+  <button type="button" onclick="left();" style="border:none; background-color:#FFFFFF; width:653px; height:360px"></button>
+  <span style="text-align:center">
+    <img src="images\라이언.png" id="img" alt="라이언 이미지" width="200px" style="display:inline;margin:0 auto">
+  </span>
+  <button onclick="right();" style="border:none; background-color:#FFFFFF; width:653px; height:360px"></button>
 </body>
 </html>
