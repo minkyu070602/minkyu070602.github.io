@@ -4,53 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+  <title>Document</title>
+  <script type="text/javascript">
 
-  <script>
-  var i = 2;
-
-  function left(){
-    i--;
-    if(i == 1)
-      // $("#img").attr("src", "images\\무지.png");
-      document.querySelector('#img').src = 'images\\무지.png'
-    else if(i == 2)
-      // $("#img").attr("src", "images\\라이언.png");
-      document.querySelector('#img').src = 'images\\라이언.png'
-    else if(i == 3)
-    // $("#img").attr("src", "images\\어피치.png");
-    document.querySelector('#img').src = 'images\\어피치.png'
-    else if(i < 1)
-        i = 1;
-  }
-  function right(){
-    i++;
-    if(i == 1)
-      // $("#img").attr("src", "images\\무지.png");
-      document.querySelector('#img').src = 'images\\무지.png'
-    else if(i == 2)
-      // $("#img").attr("src", "images\\라이언.png");
-      document.querySelector('#img').src = 'images\\라이언.png'
-    else if(i == 3)
-    // $("#img").attr("src", "images\\어피치.png");
-    document.querySelector('#img').src = 'images\\어피치.png'
-    else if(i > 3)
-        i = 3;
-  }
   </script>
-
-
-
-  <title>탭해서 넘기기</title>
   <style>
-
+    #button1 {
+      width: 1000px;
+      background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+      height: 500px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    #button1:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
-  <button type="button" onclick="left();" style="border:none; background-color:#FFFFFF; width:653px; height:360px"></button>
-  <span style="text-align:center">
-    <img src="images\라이언.png" id="img" alt="라이언 이미지" width="200px" style="display:inline;margin:0 auto">
-  </span>
-  <button onclick="right();" style="border:none; background-color:#FFFFFF; width:653px; height:360px"></button>
+  <div id="button1"></div>
 </body>
 </html>
