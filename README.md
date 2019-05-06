@@ -1,1 +1,1 @@
-https://minkyu070602.github.io/test.html
+https://minkyu070602.github.io/index.html
