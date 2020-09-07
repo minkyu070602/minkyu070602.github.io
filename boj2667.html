@@ -1,0 +1,64 @@
+<pre class="python" style="font-family:monospace;"><span style="color: #483d8b;">&quot;&quot;&quot;
+주석: 조민규
+소요시간: 30~40분
+언어: Python
+풀이 알고리즘: dfs
+&quot;&quot;&quot;</span>
+&nbsp;
+n <span style="color: #66cc66;">=</span> <span style="color: #008000;">int</span><span style="color: black;">&#40;</span><span style="color: #008000;">input</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span>  <span style="color: #808080; font-style: italic;"># 지도의 크기 (n * n)</span>
+apart <span style="color: #66cc66;">=</span> <span style="color: black;">&#91;</span><span style="color: black;">&#93;</span>        <span style="color: #808080; font-style: italic;"># 지도 데이터</span>
+ans <span style="color: #66cc66;">=</span> <span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span> * <span style="color: #ff4500;">1001</span>  <span style="color: #808080; font-style: italic;"># 각 단지의 아파트 수 (일단 모두 0으로 초기화 후 나중에 0인 데이터는 출력하지 않음)</span>
+danji <span style="color: #66cc66;">=</span> <span style="color: #ff4500;">0</span>         <span style="color: #808080; font-style: italic;"># 단지의 개수</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># 상하좌우 탐색 함수 시작</span>
+&nbsp;
+<span style="color: #ff7700;font-weight:bold;">def</span> updownleftright<span style="color: black;">&#40;</span>x<span style="color: #66cc66;">,</span> y<span style="color: black;">&#41;</span>:
+&nbsp;
+    <span style="color: #808080; font-style: italic;"># 한칸 오른쪽</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> x <span style="color: #66cc66;">!=</span> n-<span style="color: #ff4500;">1</span>:                      <span style="color: #808080; font-style: italic;"># index 범위 벗어남 에러를 막기 위해서 조건 설정</span>
+        <span style="color: #ff7700;font-weight:bold;">if</span> apart<span style="color: black;">&#91;</span>x+<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y<span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>:        <span style="color: #808080; font-style: italic;"># 한칸 오른쪽의 인덱스에 아파트가 있다면</span>
+            apart<span style="color: black;">&#91;</span>x+<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y<span style="color: black;">&#93;</span> <span style="color: #66cc66;">=</span> <span style="color: #ff4500;">0</span>         <span style="color: #808080; font-style: italic;"># 0으로 표시해서 나중에 방문하지 않도록 함</span>
+            ans<span style="color: black;">&#91;</span>danji<span style="color: black;">&#93;</span> +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>           <span style="color: #808080; font-style: italic;"># 해당 단지의 아파트 수를 1 늘려줌</span>
+            updownleftright<span style="color: black;">&#40;</span>x+<span style="color: #ff4500;">1</span><span style="color: #66cc66;">,</span> y<span style="color: black;">&#41;</span>   <span style="color: #808080; font-style: italic;"># 한칸 오른쪽으로 다시 함수 실행</span>
+&nbsp;
+    <span style="color: #808080; font-style: italic;"># 한칸 왼쪽</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> x <span style="color: #66cc66;">!=</span> <span style="color: #ff4500;">0</span>:
+        <span style="color: #ff7700;font-weight:bold;">if</span> apart<span style="color: black;">&#91;</span>x-<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y<span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>:
+            apart<span style="color: black;">&#91;</span>x-<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y<span style="color: black;">&#93;</span> <span style="color: #66cc66;">=</span> <span style="color: #ff4500;">0</span>
+            ans<span style="color: black;">&#91;</span>danji<span style="color: black;">&#93;</span> +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>
+            updownleftright<span style="color: black;">&#40;</span>x-<span style="color: #ff4500;">1</span><span style="color: #66cc66;">,</span> y<span style="color: black;">&#41;</span>
+&nbsp;
+    <span style="color: #808080; font-style: italic;"># 한칸 위쪽</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> y <span style="color: #66cc66;">!=</span> n-<span style="color: #ff4500;">1</span>:
+        <span style="color: #ff7700;font-weight:bold;">if</span> apart<span style="color: black;">&#91;</span>x<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y+<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>:
+            apart<span style="color: black;">&#91;</span>x<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y+<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span> <span style="color: #66cc66;">=</span> <span style="color: #ff4500;">0</span>
+            ans<span style="color: black;">&#91;</span>danji<span style="color: black;">&#93;</span> +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>
+            updownleftright<span style="color: black;">&#40;</span>x<span style="color: #66cc66;">,</span> y+<span style="color: #ff4500;">1</span><span style="color: black;">&#41;</span>
+&nbsp;
+    <span style="color: #808080; font-style: italic;"># 한칸 아래쪽</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> y <span style="color: #66cc66;">!=</span> <span style="color: #ff4500;">0</span>:
+        <span style="color: #ff7700;font-weight:bold;">if</span> apart<span style="color: black;">&#91;</span>x<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y-<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>:
+            apart<span style="color: black;">&#91;</span>x<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>y-<span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span> <span style="color: #66cc66;">=</span> <span style="color: #ff4500;">0</span>
+            ans<span style="color: black;">&#91;</span>danji<span style="color: black;">&#93;</span> +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>
+            updownleftright<span style="color: black;">&#40;</span>x<span style="color: #66cc66;">,</span> y-<span style="color: #ff4500;">1</span><span style="color: black;">&#41;</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># 상하좌우 탐색 함수 종료</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># 입력</span>
+<span style="color: #ff7700;font-weight:bold;">for</span> i <span style="color: #ff7700;font-weight:bold;">in</span> <span style="color: #008000;">range</span><span style="color: black;">&#40;</span>n<span style="color: black;">&#41;</span>:
+    apart.<span style="color: black;">append</span><span style="color: black;">&#40;</span><span style="color: #008000;">list</span><span style="color: black;">&#40;</span><span style="color: #008000;">map</span><span style="color: black;">&#40;</span><span style="color: #008000;">int</span><span style="color: #66cc66;">,</span> <span style="color: #008000;">input</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span> <span style="color: #808080; font-style: italic;"># 지도 데이터 입력(각각 int형으로 map 해준 것을 list로 넣어줘서 list안에 list가 쌓여 2차원 배열을 만듬)</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># 연산</span>
+<span style="color: #ff7700;font-weight:bold;">for</span> i <span style="color: #ff7700;font-weight:bold;">in</span> <span style="color: #008000;">range</span><span style="color: black;">&#40;</span>n<span style="color: black;">&#41;</span>:                        
+    <span style="color: #ff7700;font-weight:bold;">for</span> j <span style="color: #ff7700;font-weight:bold;">in</span> <span style="color: #008000;">range</span><span style="color: black;">&#40;</span>n<span style="color: black;">&#41;</span>:                    
+        <span style="color: #ff7700;font-weight:bold;">if</span> apart<span style="color: black;">&#91;</span>i<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>j<span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>:              <span style="color: #808080; font-style: italic;"># 만약 지도에서 i, j 인덱스에 아파트가 있다면,</span>
+            danji +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>                    <span style="color: #808080; font-style: italic;"># 단지 수를 1 늘려줌</span>
+            ans<span style="color: black;">&#91;</span>danji<span style="color: black;">&#93;</span> +<span style="color: #66cc66;">=</span> <span style="color: #ff4500;">1</span>               <span style="color: #808080; font-style: italic;"># 해당 단지의 아파트 수를 1 늘려줌</span>
+            apart<span style="color: black;">&#91;</span>i<span style="color: black;">&#93;</span><span style="color: black;">&#91;</span>j<span style="color: black;">&#93;</span> <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">0</span>              <span style="color: #808080; font-style: italic;"># 이미 방문했기 때문에  0으로 표시해서 방문하지 않도록 함</span>
+            updownleftright<span style="color: black;">&#40;</span>i<span style="color: #66cc66;">,</span> j<span style="color: black;">&#41;</span>         <span style="color: #808080; font-style: italic;"># 상하좌우 탐색</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># 출력</span>
+<span style="color: #ff7700;font-weight:bold;">print</span><span style="color: black;">&#40;</span>danji<span style="color: black;">&#41;</span>                              <span style="color: #808080; font-style: italic;"># 총 단지 개수 출력</span>
+<span style="color: #ff7700;font-weight:bold;">for</span> a <span style="color: #ff7700;font-weight:bold;">in</span> <span style="color: #008000;">sorted</span><span style="color: black;">&#40;</span>ans<span style="color: black;">&#41;</span>:                     <span style="color: #808080; font-style: italic;"># 각 단지의 수를 정렬해서 반복</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> a <span style="color: #66cc66;">==</span> <span style="color: #ff4500;">1</span>: <span style="color: #ff7700;font-weight:bold;">print</span><span style="color: black;">&#40;</span>a<span style="color: black;">&#41;</span>                   <span style="color: #808080; font-style: italic;"># a가 1일경우 그냥 a 출력 (만약 단지에 아파트가 1개일 경우상하좌우 탐색 함수에서 if문에 충족하지 않으므로 상하좌우 탐색 함수의 +1을 받지 못했기 때문에)</span>
+    <span style="color: #ff7700;font-weight:bold;">if</span> a <span style="color: #66cc66;">&gt;</span> <span style="color: #ff4500;">1</span>: <span style="color: #ff7700;font-weight:bold;">print</span><span style="color: black;">&#40;</span>a-<span style="color: #ff4500;">1</span><span style="color: black;">&#41;</span>                  <span style="color: #808080; font-style: italic;"># a가 1보다 클 경우 a-1 출력 (상하좌우 탐색 함수에서 +1을 또 받았기 때문에)</span></pre>
